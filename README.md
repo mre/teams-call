@@ -25,7 +25,11 @@ Specifically, the GraphQL API for checking the call presence is deprecated since
 
 I couldn't find a script that does this.
 Using it to indicate that I'm busy with a status LED outside the office.
+
+<img width=300 src="led.jpeg" />
+
 Using this script in combination with [ControlPlane](https://www.controlplaneapp.com/) to trigger the LED on status change.
+
 
 ## Limitations
 
