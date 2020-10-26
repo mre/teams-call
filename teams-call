@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eof pipefail
+
+LOGFILE="$HOME/Library/Application Support/Microsoft/Teams/logs.txt"
+
+last_event=$(tac "${LOGFILE}" | grep -oh "eventData: s::;m::1;a::\d" | head -n1)
+if [[ "${last_event}" =~ 1$ ]]
+then
+  echo "☎️ In a call"
+  exit 1
+else
+  exit 0
+fi
