@@ -1,8 +1,23 @@
 #!/bin/bash
 
-LOGFILE="$HOME/Library/Application Support/Microsoft/Teams/logs.txt"
+case "$(uname -s)" in
+   Darwin)
+     LOGFILE="${HOME}/Library/Application Support/Microsoft/Teams/logs.txt"
+     ;;
+   Linux)
+     LOGFILE="${HOME}/.config/Microsoft/Microsoft Teams/logs.txt"
+     ;;
+   CYGWIN*|MINGW32*|MSYS*|MINGW*)
+     echo "Windows OS not supported yet."
+     exit 1
+     ;;
+   *)
+     echo "OS not supported."
+     exit 1
+     ;;
+esac
 
-last_event=$(tac "${LOGFILE}" | grep -oh "eventData: s::;m::1;a::\d" | head -n1)
+last_event=$(tac "${LOGFILE}" | grep -oh "eventData: s::;m::1;a::[0-9]" | head -n1)
 if [[ "${last_event}" =~ 1$ ]]
 then
   echo "☎️ In a call"
