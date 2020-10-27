@@ -33,6 +33,6 @@ Using this script in combination with [ControlPlane](https://www.controlplaneapp
 
 ## Limitations
 
-Only supports macOS at the moment. The file path has to be adjusted for Linux and Windows.  
+Supports macOS and Linux. The file path has to be adjusted for Windows.
 Please send a PR if you can. :smile:
 Also would be happy for pull requests that improve the code quality.
