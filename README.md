@@ -6,8 +6,8 @@ Shell script to detect when you're on a Microsoft Teams Call.
 
 When calling the script it will exit with 
 
-* 1 if you're on a call
-* 0 if you're not
+* 0 if you're on a call
+* 1 if you're not
 
 ## How?
 
