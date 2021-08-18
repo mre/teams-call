@@ -8,7 +8,7 @@ case "$(uname -s)" in
      LOGFILE="${HOME}/.config/Microsoft/Microsoft Teams/logs.txt"
      ;;
    CYGWIN*|MINGW32*|MSYS*|MINGW*)
-     echo "Windows OS not supported yet."
+     LOGFILE="%AppData%\Microsoft\Teams\logs.txt"
      exit 1
      ;;
    *)
