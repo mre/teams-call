@@ -33,6 +33,4 @@ Using this script in combination with [ControlPlane](https://www.controlplaneapp
 
 ## Limitations
 
-Supports macOS and Linux. The file path has to be adjusted for Windows.
-Please send a PR if you can. :smile:
-Also would be happy for pull requests that improve the code quality.
+Supports macOS and Linux. For Windows, see [this project](https://github.com/EBOOZ/TeamsStatus).
