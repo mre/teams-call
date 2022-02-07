@@ -2,13 +2,21 @@
 
 Shell script to detect when you're on a Microsoft Teams Call.
 
-## What?
+## Bash script
 
 When calling the script it will exit with 
 
 * 0 if you're on a call
 * 1 if you're not
 
+
+## Python script
+
+```python
+import teams_call
+
+isInCall = teams_call.isInCall()
+```
 ## How?
 
 You don't wanna know.
@@ -24,7 +32,6 @@ Specifically, the GraphQL API for checking the call presence is deprecated since
 * eventData: s::;m::1;a::0 call in call + screen is shared
 * eventData: s::;m::1;a::1 call started / joined
 * eventData: s::;m::1;a::3 call left
-
 
 ## Why?
 

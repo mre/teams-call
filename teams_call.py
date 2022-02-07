@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from pprint import pprint
 import re
 
 def getLogFile():
@@ -15,7 +14,6 @@ def getLogFile():
         case _:
             raise Exception('OS not supported!')
 
-
 def isInCall():
     logFile = getLogFile()
     if not os.path.isfile(logFile):
@@ -23,14 +21,12 @@ def isInCall():
 
     output = os.popen('tac "' + logFile +  '" | grep -oh "eventData: s::;m::1;a::[0-9]" | head -n1').read().split('\n')
 
-
     if output[0][-1] in ['0', '1']:
         #print("In Call")
         return True
     else:
         #print("Not In Call")
         return False
-
 
 if __name__ == '__main__':
     isInCall()
