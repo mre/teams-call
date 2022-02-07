@@ -18,9 +18,12 @@ case "$(uname -s)" in
 esac
 
 last_event=$(tac "${LOGFILE}" | grep -oh "eventData: s::;m::1;a::[0-9]" | head -n1)
-if [[ "${last_event}" =~ 1$ ]]
+
+if [[ "${last_event}" =~ 0$ ]] || [[ "${last_event}" =~ 1$ ]]
 then
-  echo "☎️ In a call"
+#  echo "☎️ In a call"
   exit 0
+else
+# echo "not in call"
+ exit 1
 fi
-exit 1
