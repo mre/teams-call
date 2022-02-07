@@ -21,6 +21,11 @@ Sad, but you asked for it.
 Couldn't find any other way.
 Specifically, the GraphQL API for checking the call presence is deprecated since v1.0 and I didn't want to scrape the network traffic or screengrab the status icon.
 
+* eventData: s::;m::1;a::0 call in call + screen is shared
+* eventData: s::;m::1;a::1 call started / joined
+* eventData: s::;m::1;a::3 call left
+
+
 ## Why?
 
 I couldn't find a script that does this.
