@@ -1,13 +1,18 @@
 #!/bin/bash
 
+if ! which jq &>/dev/null; then
+  echo "You need to download jq to use this script"
+  exit 1
+fi
+
 case "$(uname -s)" in
 Darwin)
-  LOGFILE="${HOME}/Library/Application Support/Microsoft/Teams/logs.txt"
+  STORAGE_FILE="${HOME}/Library/Application Support/Microsoft/Teams/storage.json"
   ;;
 Linux)
-  LOGFILE="${HOME}/.config/Microsoft/Microsoft Teams/logs.txt"
+  STORAGE_FILE="${HOME}/.config/Microsoft/Microsoft Teams/storage.json"
   ;;
-CYGWIN* | MINGW32* | MSYS* | MINGW*)
+CYGWIN*|MINGW32*|MSYS*|MINGW*)
   echo "Windows OS not supported. Try https://github.com/EBOOZ/TeamsStatus."
   exit 1
   ;;
@@ -17,12 +22,20 @@ CYGWIN* | MINGW32* | MSYS* | MINGW*)
   ;;
 esac
 
-last_event=$(tac "${LOGFILE}" | grep -oh "eventData: s::;m::1;a::[0-9]" | head -n1)
+current_state="$(jq -r '.appStates.states' <"$STORAGE_FILE" | sed 's/.*,//')"
+current_status="$(jq -r '.activityEvents.events | last' <"$STORAGE_FILE")"
 
-if [[ "${last_event}" =~ 0$ ]] || [[ "${last_event}" =~ 1$ ]]; then
-  #  echo "☎️ In a call"
+case "${current_state}${current_status}" in
+*incoming_call*)
+#  echo "call incoming"
+  exit 2
+  ;;
+*InCall*|*call_accept*)
+#  echo "☎️ In a call"
   exit 0
-else
+  ;;
+*CallEnded*|*calling_call_disconnected*)
   # echo "not in call"
   exit 1
-fi
+  ;;
+esac
